@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       title: "Service Prov",
       type: "Android Application",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur iure asperiores voluptatum nisi doloribus, beatae, repellat ipsam fugiat nostrum cum nemo ducimus. Nihil dolorem vero reiciendis laboriosam impedit velit?",
+        "Service Prov is the application where the users can search and book local service providing professionals. This application is created for Android using Java and the backend is created in Python Django Framework with MySQL database.",
       logoName: "service_prov_logo.png",
       imageName: "service_prov_app.png"
     },
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
       title: "Air Pay",
       type: "Android Application",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tenetur iure asperiores voluptatum nisi doloribus, beatae, repellat ipsam fugiat nostrum cum nemo ducimus. Nihil dolorem vero reiciendis laboriosam impedit velit?",
+        "Air Pay is the financial application in which the users can pay digitally using the Android device created in Java where as the backend implementation uses the Java Spring Framework with MySQL database.",
       logoName: "airpay_logo.png",
       imageName: "airpay_app.png"
     }
