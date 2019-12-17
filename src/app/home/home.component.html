@@ -1,0 +1,148 @@
+<header>
+  <div class="container">
+    <nav>
+      <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Skills</a></li>
+        <li><a href="#">Personal Works</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="introduction">
+          <p class="greed">Hey there !</p>
+          <p class="intro-name">I am Ajit Kumar Baral</p>
+          <p class="designation">Software Engineer</p>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="/assets/photo.png" alt="ajit-kumar-baral-photo-png" />
+        <div class="media">
+          <a href="#"
+            ><img src="/assets/github.png" alt="ajit-kumar-baral-github-url"
+          /></a>
+          <a href="#"
+            ><img src="/assets/linkedin.png" alt="ajit-kumar-baral-linkedin-url"
+          /></a>
+          <a href="#"
+            ><img src="/assets/facebook.png" alt="ajit-kumar-baral-facebook-url"
+          /></a>
+          <a href="#"
+            ><img
+              src="/assets/instagram.png"
+              alt="ajit-kumar-baral-instagram-url"
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <h2 class="text-uppercase">About me</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error dolor
+      laborum quis consequuntur voluptas, eveniet quam sit, rem ullam dolorem
+      laudantium excepturi quasi! Nostrum sequi impedit nulla laboriosam eos
+      voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Obcaecati exercitationem cum expedita provident, maiores accusantium
+      laboriosam cupiditate necessitatibus adipisci facilis fugit, temporibus
+      animi iste quos tempore alias praesentium. Enim, ab!
+    </p>
+  </div>
+</section>
+<hr />
+<section id="portfolio">
+  <div class="container">
+    <h2 class="text-uppercase">Portfolio</h2>
+    <h5 class="text-center text-uppercase"><b>Work Place</b></h5>
+    <div class="text-center p-5">
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="image-container">
+            <img src="/assets/bajra_logo.png" alt="bajra-technologies-logo" />
+          </div>
+          <p class="pt-3 text-center"><b>Bajra Technologies</b></p>
+          <p class="text-center">Software Engineer</p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="image-container">
+            <img src="/assets/un_logo.png" alt="united-nations-logo" />
+          </div>
+          <p class="pt-3 text-center"><b>United Nations</b></p>
+          <p class="text-center">Mobile Application Developer</p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="image-container">
+            <img src="/assets/kkec_logo.png" alt="kkec-logo" />
+          </div>
+          <p class="pt-3 text-center"><b>K.K.Engineering & Constructions</b></p>
+          <p class="text-center">Assistant Web & Software Developer</p>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <h5 class="text-center text-uppercase mt-5"><b>Freelance</b></h5>
+    <div class="text-center p-5">
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="image-container">
+            <img
+              src="/assets/nepal_govt_logo.png"
+              alt="nepal-government-logo"
+            />
+          </div>
+          <p class="pt-3 text-center"><b>Hamro Geruwa</b></p>
+          <p class="text-center">Geruwa Municipality</p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="image-container">
+            <img
+              src="/assets/kvda_logo.png"
+              alt="kathmandu-valley-development-authority-logo"
+            />
+          </div>
+          <p class="pt-3 text-center"><b>KVDA</b></p>
+          <p class="text-center">Kathmandu Valley Development Authority</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+<section id="my-skills">
+  <div class="container">
+    <h2 class="text-uppercase">Skills</h2>
+    <div class="skills-container">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let skill of skills">
+          <div class="skill-item">
+            <span>{{ skill.percent }}%</span>
+            <easy-pie-chart
+              [percent]="skill.percent"
+              [options]="{ barColor: '#000' }"
+            ></easy-pie-chart>
+          </div>
+          <p>{{ skill.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+<section id="personal-works">
+  <div class="container">
+    <h2 class="text-uppercase">Personal Works</h2>
+  </div>
+</section>
+<hr />
+<section id="contact">
+  <div class="container">
+    <h2 class="text-uppercase">Contact</h2>
+  </div>
+</section>
+<footer></footer>
