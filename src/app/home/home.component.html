@@ -1,13 +1,8 @@
-<header>
+<header #home>
   <div class="container">
     <nav>
       <ul>
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Skills</a></li>
-        <li><a href="#">Personal Works</a></li>
-        <li><a href="#">Contact</a></li>
+        <li *ngFor="let menu of menuItems" [class]="currentMenu === menu ? 'active' : ''"><a (click)="setMenu(menu)">{{ menu }}</a></li>
       </ul>
     </nav>
     <div class="row">
@@ -21,16 +16,16 @@
       <div class="col-md-4 text-center">
         <img src="/assets/photo.png" alt="ajit-kumar-baral-photo-png" />
         <div class="media">
-          <a href="#"
+          <a target="_blank" href="https://github.com/ajitkbaral"
             ><img src="/assets/github.png" alt="ajit-kumar-baral-github-url"
           /></a>
-          <a href="#"
+          <a target="_blank" href="https://www.linkedin.com/in/ajitkbaral/"
             ><img src="/assets/linkedin.png" alt="ajit-kumar-baral-linkedin-url"
           /></a>
-          <a href="#"
+          <a target="_blank" href="https://www.facebook.com/ajitkbaral"
             ><img src="/assets/facebook.png" alt="ajit-kumar-baral-facebook-url"
           /></a>
-          <a href="#"
+          <a target="_blank" href="https://www.instagram.com/ajitkbaral/"
             ><img
               src="/assets/instagram.png"
               alt="ajit-kumar-baral-instagram-url"
@@ -41,7 +36,7 @@
   </div>
 </header>
 
-<section id="about">
+<section id="about" #about>
   <div class="container">
     <h2 class="text-uppercase">About me</h2>
     <p>
@@ -56,8 +51,8 @@
   </div>
 </section>
 <hr />
-<section id="portfolio">
-  <div class="container">
+<section id="portfolio" #portfolio>
+  <div class="container mt-5">
     <h2 class="text-uppercase">Portfolio</h2>
     <h5 class="text-center text-uppercase"><b>Work Place</b></h5>
     <div class="text-center p-5">
@@ -114,10 +109,10 @@
   </div>
 </section>
 <hr />
-<section id="my-skills">
-  <div class="container">
+<section id="my-skills" #mySkills>
+  <div class="container mt-5 mb-5">
     <h2 class="text-uppercase">Skills</h2>
-    <div class="skills-container">
+    <div class="skills-container mt-4 mb-4">
       <div class="row">
         <div class="col-md-3" *ngFor="let skill of skills">
           <div class="skill-item">
@@ -134,15 +129,77 @@
   </div>
 </section>
 <hr />
-<section id="personal-works">
-  <div class="container">
+<section id="personal-works" #personalWork>
+  <div class="container mt-5 mb-5">
     <h2 class="text-uppercase">Personal Works</h2>
+    <div *ngFor="let work of personalWorks; index as i">
+      <div class="row mt-4 mb-4">
+        <div class="col-md-8">
+          <div class="per-work-container mt-3">
+            <img src="/assets/{{ work.logoName }}" [alt]="work.logoName">
+            <div class="ml-2">
+              <span>{{ work.title }}</span>
+              <p>{{ work.type }}</p>
+            </div>
+          </div>
+          <p class="mt-3">{{ work.description }}</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="/assets/{{ work.imageName }}" [alt]="work.imageName">
+        </div>
+      </div>
+      <hr *ngIf="i !== personalWorks.length - 1">
+    </div>
   </div>
 </section>
 <hr />
-<section id="contact">
-  <div class="container">
+<section id="contact" #contact>
+  <div class="container mt-5 mb-5">
     <h2 class="text-uppercase">Contact</h2>
+    <div class="form-container p-3">
+        <p>If you want to contact me, send me a message. I will contact you soon.</p>
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" aria-describedby="firstNameHelp"
+                  placeholder="First Name" required>
+                <small id="firstNameHelp" class="form-text text-muted">Please enter your first name</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-group">
+                  <input type="text" class="form-control" aria-describedby="lastNameHelp" placeholder="Last Name" required>
+                  <small id="lastNameHelp" class="form-text text-muted">Please enter your last name</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">Please enter your email address</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Message" required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-dark pl-5 pr-5 mt-3">Send</button>
+          </div>
+        </form>
+    </div>
   </div>
 </section>
-<footer></footer>
+<footer class="p-3">
+  <div class="d-flex justify-content-center">
+    <span>Ajit Kumar Baral &copy; 2019</span>
+  </div>
+</footer>
