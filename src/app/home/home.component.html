@@ -150,21 +150,24 @@
 <section id="contact" #contact>
   <div class="container mt-5 mb-5">
     <h2 class="text-uppercase">Contact</h2>
+    <div class="alert alert-success" role="alert" *ngIf="messageSent">
+      Your message has been sent! I will contact you soon. Thank you.
+    </div>
     <div class="form-container p-3">
         <p>If you want to contact me, send me a message. I will contact you soon.</p>
-        <form>
+        <form [formGroup]="messageFormGroup" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" class="form-control" aria-describedby="firstNameHelp"
-                  placeholder="First Name" required>
+                  placeholder="First Name" formControlName="firstName" required>
                 <small id="firstNameHelp" class="form-text text-muted">Please enter your first name</small>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <div class="form-group">
-                  <input type="text" class="form-control" aria-describedby="lastNameHelp" placeholder="Last Name" required>
+                  <input type="text" class="form-control" aria-describedby="lastNameHelp" placeholder="Last Name" formControlName="lastName" required>
                   <small id="lastNameHelp" class="form-text text-muted">Please enter your last name</small>
                 </div>
               </div>
@@ -173,7 +176,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" required>
                 <small id="emailHelp" class="form-text text-muted">Please enter your email address</small>
               </div>
             </div>
@@ -181,7 +184,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Message" formControlName="message" required></textarea>
               </div>
             </div>
           </div>
