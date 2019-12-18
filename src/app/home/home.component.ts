@@ -142,6 +142,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.messageSent = false;
       }, 5000)
+      this.sendClick = false;
     }
     
   }
