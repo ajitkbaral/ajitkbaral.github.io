@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { AngularFirestore } from '@angular/fire/firestore';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-home",
@@ -6,6 +8,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  public currentMenu;
   public menuItems = [
     "Home",
     "About",
@@ -14,7 +17,6 @@ export class HomeComponent implements OnInit {
     "Personal works",
     "Contact"
   ];
-
   @ViewChild("home")
   public home: ElementRef;
   @ViewChild("about")
@@ -27,9 +29,6 @@ export class HomeComponent implements OnInit {
   public personalWork: ElementRef;
   @ViewChild("contact")
   public contact: ElementRef;
-
-  public currentMenu;
-
   public skills = [
     {
       name: "Java",
@@ -60,7 +59,6 @@ export class HomeComponent implements OnInit {
       percent: 75
     }
   ];
-
   public personalWorks = [
     {
       title: "Service Prov",
@@ -79,8 +77,18 @@ export class HomeComponent implements OnInit {
       imageName: "airpay_app.png"
     }
   ];
+  public messageFormGroup;
+  public sendClick: boolean;
+  public messageSent;
 
-  constructor() {}
+  constructor(private fb: FormBuilder, private db: AngularFirestore) {
+    this.messageFormGroup = fb.group({
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      message: [null, [Validators.required]],
+    });
+  }
 
   ngOnInit() {
     this.setMenu(this.menuItems[0]);
@@ -114,5 +122,28 @@ export class HomeComponent implements OnInit {
   private scrollToMenu(elementRef: ElementRef) {
     elementRef.nativeElement.scrollIntoView({ behavior: "smooth" });
     this.currentMenu = this.menuItems[0];
+  }
+
+  public onSubmit() {
+    if (this.sendClick) {
+      return;
+    }
+    this.sendClick = true;
+    if (this.messageFormGroup.valid) {
+      this.db.collection('messages').add({
+        firstName: this.messageFormGroup.get('firstName').value,
+        lastName: this.messageFormGroup.get('lastName').value,
+        email: this.messageFormGroup.get('email').value,
+        message: this.messageFormGroup.get('message').value,
+        submittedDate: new Date()
+      });
+      this.messageSent = true;
+      this.messageFormGroup.reset();
+      setTimeout(() => {
+        this.messageSent = false;
+      }, 5000)
+      this.sendClick = false;
+    }
+    
   }
 }
