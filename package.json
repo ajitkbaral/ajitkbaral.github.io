@@ -24,6 +24,7 @@
     "core-js": "^2.5.4",
     "easy-pie-chart": "^2.1.7",
     "firebase": "^7.6.0",
+    "jquery": "^3.4.1",
     "ng2modules-easypiechart": "0.0.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

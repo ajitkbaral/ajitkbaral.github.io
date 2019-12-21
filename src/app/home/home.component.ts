@@ -29,6 +29,23 @@ export class HomeComponent implements OnInit {
   public personalWork: ElementRef;
   @ViewChild("contact")
   public contact: ElementRef;
+  public workPlaces = [
+    {
+      organizationName: 'Bajra Technologies Pvt. Ltd.',
+      designation: 'Software Engineer',
+      imageName: 'bajra_logo'
+    },
+    {
+      organizationName: 'United Nations',
+      designation: 'Mobile Application Developer',
+      imageName: 'un_logo'
+    },
+    {
+      organizationName: 'K.K. Engineering & Constructions Pvt. Ltd.',
+      designation: 'Associated Web & Software Developer',
+      imageName: 'kkec_logo'
+    }
+  ];
   public skills = [
     {
       name: "Java",
@@ -143,6 +160,11 @@ export class HomeComponent implements OnInit {
         this.messageSent = false;
       }, 5000)
       this.sendClick = false;
+    } else {
+      this.messageFormGroup.get('firstName').markAsTouched();
+      this.messageFormGroup.get('lastName').markAsTouched();
+      this.messageFormGroup.get('email').markAsTouched();
+      this.messageFormGroup.get('message').markAsTouched();
     }
     
   }
