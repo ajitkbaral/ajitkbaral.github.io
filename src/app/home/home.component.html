@@ -1,9 +1,16 @@
 <header #home>
   <div class="container">
-    <nav>
-      <ul>
-        <li *ngFor="let menu of menuItems" [class]="currentMenu === menu ? 'active' : ''"><a (click)="setMenu(menu)">{{ menu }}</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#menuBar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuBar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" 
+          *ngFor="let menu of menuItems" [class]="currentMenu === menu ? 'active' : ''">
+          <a class="nav-link text-uppercase" (click)="setMenu(menu)">{{ menu }}</a></li>
+        </ul>
+      </div>
     </nav>
     <div class="row">
       <div class="col-md-8">
@@ -14,7 +21,7 @@
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <img src="/assets/photo.png" alt="ajit-kumar-baral-photo-png" />
+        <img src="/assets/photo.png" alt="ajit-kumar-baral-photo-png" width="100%"/>
         <div class="media">
           <a target="_blank" href="https://github.com/ajitkbaral"
             ><img src="/assets/github.png" alt="ajit-kumar-baral-github-url"
@@ -51,26 +58,13 @@
     <h5 class="text-center text-uppercase"><b>Work Place</b></h5>
     <div class="text-center p-5">
       <div class="row">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let workPlace of workPlaces; index as i">
           <div class="image-container">
-            <img src="/assets/bajra_logo.png" alt="bajra-technologies-logo" />
+            <img [src]="'/assets/' + workPlace.imageName + '.png'" />
           </div>
-          <p class="pt-3 text-center"><b>Bajra Technologies</b></p>
-          <p class="text-center">Software Engineer</p>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="image-container">
-            <img src="/assets/un_logo.png" alt="united-nations-logo" />
-          </div>
-          <p class="pt-3 text-center"><b>United Nations</b></p>
-          <p class="text-center">Mobile Application Developer</p>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="image-container">
-            <img src="/assets/kkec_logo.png" alt="kkec-logo" />
-          </div>
-          <p class="pt-3 text-center"><b>K.K.Engineering & Constructions</b></p>
-          <p class="text-center">Assistant Web & Software Developer</p>
+          <p class="pt-3 text-center"><b>{{ workPlace.organizationName }}</b></p>
+          <p class="text-center">{{ workPlace.designation }}</p>
+          <hr *ngIf="i !== workPlaces.length - 1"/>
         </div>
       </div>
     </div>
@@ -78,7 +72,7 @@
     <h5 class="text-center text-uppercase mt-5"><b>Freelance</b></h5>
     <div class="text-center p-5">
       <div class="row">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-4 col-sm-12">
           <div class="image-container">
             <img
               src="/assets/nepal_govt_logo.png"
@@ -87,8 +81,9 @@
           </div>
           <p class="pt-3 text-center"><b>Hamro Geruwa</b></p>
           <p class="text-center">Geruwa Municipality</p>
+          <hr />
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-4 col-sm-12">
           <div class="image-container">
             <img
               src="/assets/kvda_logo.png"
@@ -108,7 +103,7 @@
     <h2 class="text-uppercase">Skills</h2>
     <div class="skills-container mt-4 mb-4">
       <div class="row">
-        <div class="col-md-3" *ngFor="let skill of skills">
+        <div class="col-md-3 col-sm-3" *ngFor="let skill of skills">
           <div class="skill-item">
             <span>{{ skill.percent }}%</span>
             <easy-pie-chart
@@ -139,7 +134,7 @@
           <p class="mt-3">{{ work.description }}</p>
         </div>
         <div class="col-md-4 text-center">
-          <img src="/assets/{{ work.imageName }}" [alt]="work.imageName">
+          <img src="/assets/{{ work.imageName }}" [alt]="work.imageName" width="100%">
         </div>
       </div>
       <hr *ngIf="i !== personalWorks.length - 1">
@@ -160,15 +155,17 @@
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" class="form-control" aria-describedby="firstNameHelp"
-                  placeholder="First Name" formControlName="firstName" required>
+                  placeholder="First Name" formControlName="firstName">
                 <small id="firstNameHelp" class="form-text text-muted">Please enter your first name</small>
+                <small class="form-text text-danger" *ngIf="messageFormGroup.get('firstName').hasError('required') && messageFormGroup.get('firstName').touched">This field is required</small>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <div class="form-group">
-                  <input type="text" class="form-control" aria-describedby="lastNameHelp" placeholder="Last Name" formControlName="lastName" required>
+                  <input type="text" class="form-control" aria-describedby="lastNameHelp" placeholder="Last Name" formControlName="lastName">
                   <small id="lastNameHelp" class="form-text text-muted">Please enter your last name</small>
+                  <small class="form-text text-danger" *ngIf="messageFormGroup.get('lastName').hasError('required') && messageFormGroup.get('lastName').touched">This field is required</small>
                 </div>
               </div>
             </div>
@@ -176,15 +173,18 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" required>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
                 <small id="emailHelp" class="form-text text-muted">Please enter your email address</small>
+                <small class="form-text text-danger" *ngIf="messageFormGroup.get('email').hasError('required') && messageFormGroup.get('email').touched">This field is required</small>
+                <small class="form-text text-danger" *ngIf="messageFormGroup.get('email').hasError('email') && messageFormGroup.get('email').touched">Invalid email format.</small>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Message" formControlName="message" required></textarea>
+                <textarea class="form-control" rows="5" placeholder="Message" formControlName="message"></textarea>
+                <small class="form-text text-danger" *ngIf="messageFormGroup.get('message').hasError('required') && messageFormGroup.get('message').touched">This field is required</small>
               </div>
             </div>
           </div>

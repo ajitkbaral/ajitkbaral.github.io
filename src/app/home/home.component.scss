@@ -12,34 +12,46 @@ header {
   -webkit-clip-path: polygon(0 70%, 0 0, 100% 0, 100% 100%);
   clip-path: polygon(0 70%, 0 0, 100% 0, 100% 100%);
   width: 100%;
-  height: 605px;
   background-color: #1a1a1a;
 
   nav {
+    &.bg-dark {
+      background-color: #1a1a1a !important;
+    }
     ul {
-      display: flex;
-      justify-content: flex-end;
-      list-style-type: none;
-      padding: 40px 0;
       li {
-        text-transform: uppercase;
-        margin-left: 20px;
-        border-bottom: 3px solid #1a1a1a;
-        transition: border-bottom 0.3s;
-        cursor: pointer;
         a {
-          color: white;
-          text-decoration: none;
+          cursor: pointer;
         }
-      }
-
-      li:hover,
-      .active {
-        border-bottom: 3px solid white;
-        color: whitesmoke;
       }
     }
   }
+
+  // nav {
+  //   ul {
+  //     display: flex;
+  //     justify-content: flex-end;
+  //     list-style-type: none;
+  //     padding: 40px 0;
+  //     li {
+  //       text-transform: uppercase;
+  //       margin-left: 20px;
+  //       border-bottom: 3px solid #1a1a1a;
+  //       transition: border-bottom 0.3s;
+  //       cursor: pointer;
+  //       a {
+  //         color: white;
+  //         text-decoration: none;
+  //       }
+  //     }
+
+  //     li:hover,
+  //     .active {
+  //       border-bottom: 3px solid white;
+  //       color: whitesmoke;
+  //     }
+  //   }
+  // }
 
   .introduction {
     display: flex;
@@ -64,7 +76,7 @@ header {
   .media {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 10px 0;
   }
 }
 
@@ -78,6 +90,9 @@ header {
 #portfolio {
   .image-container {
     height: 140px;
+  }
+  hr {
+    display: none;
   }
 }
 
@@ -111,4 +126,41 @@ header {
 footer {
   background-color: #1a1a1a;
   color: white;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  header {
+    height: 605px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  header {
+    height: 505px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  p, h2 {
+    text-align: center;
+  }
+
+  header {
+    -webkit-clip-path: none;
+    clip-path: none;
+    height: inherit;
+    padding-bottom: 20px;
+  }
+
+  #about {
+    margin-top: 20px;
+  }
+
+  #portfolio {
+    hr {
+      display: block;
+      margin: 50px 0;
+    }
+  }
 }
